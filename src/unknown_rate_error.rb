@@ -1,0 +1,2 @@
+class UnknownRateError < RuntimeError
+end
