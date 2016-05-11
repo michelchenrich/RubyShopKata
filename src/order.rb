@@ -1,16 +1,13 @@
 require_relative 'order_item.rb'
 
 class Order
-  def initialize
+  def initialize(currency)
+    @currency = currency
     @items = []
   end
 
-  def add_item(product, quantity)
+  def add_item(product, quantity=1.0)
     @items << OrderItem.new(product, quantity)
-  end
-
-  def currency=(currency)
-    @currency = currency
   end
 
   def total

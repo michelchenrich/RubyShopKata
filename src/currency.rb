@@ -2,18 +2,15 @@ require_relative 'money.rb'
 require_relative 'unknown_rate_error.rb'
 
 class Currency
-  def self.instances
-    @instances ||= Hash.new
-  end
+  @currencies = Hash.new { |currencies, symbol| currencies[symbol] = self.new(symbol) }
 
   def self.for(symbol)
-    instances[symbol] ||= Currency.new(symbol)
+    @currencies[symbol]
   end
 
   def initialize(symbol)
     @symbol = symbol
-    @rates = Hash.new
-    rates[self] = 1.0
+    @rates = {self => 1.0}
   end
 
   def money(number=0.0)
@@ -30,8 +27,7 @@ class Currency
   end
 
   def get_rate(other)
-    raise UnknownRateError unless rates.include?(other)
-    rates[other]
+    rates[other] or raise(UnknownRateError)
   end
 
   def to_s
