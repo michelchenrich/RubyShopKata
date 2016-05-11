@@ -11,4 +11,8 @@ class OrderItem
   def total
     @product.price * @quantity
   end
+
+  def post
+    @product.take_units(@quantity)
+  end
 end

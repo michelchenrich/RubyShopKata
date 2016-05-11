@@ -1,0 +1,2 @@
+class NotEnoughAvailableUnitsError < RuntimeError
+end
