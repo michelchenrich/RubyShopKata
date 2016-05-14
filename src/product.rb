@@ -15,6 +15,10 @@ class Product
     @price
   end
 
+  def price=(money)
+    @price = money
+  end
+
   def available_units
     @available_units
   end
