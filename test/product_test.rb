@@ -3,7 +3,13 @@ require_relative '../src/product.rb'
 require_relative '../src/not_enough_available_units_error.rb'
 
 class ProductTest < Test::Unit::TestCase
-  def test_name
+  def test_empty_product
+    product = Product.new
+    assert_equal(nil, product.name)
+    assert_equal(nil, product.price)
+  end
+ 
+  def test_initial_name
     product = Product.new('Product name', 10.0)
     assert_equal('Product name', product.name)
   end
@@ -11,6 +17,12 @@ class ProductTest < Test::Unit::TestCase
   def test_initial_price
     product = Product.new('Product name', 10.0)
     assert_equal(10.0, product.price)
+  end
+
+  def test_new_name
+    product = Product.new('Old name', 10.0)
+    product.name = 'New name'
+    assert_equal('New name', product.name)
   end
 
   def test_new_price

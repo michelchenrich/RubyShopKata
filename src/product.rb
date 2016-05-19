@@ -1,7 +1,7 @@
 require_relative 'not_enough_available_units_error'
 
 class Product
-  def initialize(name, price)
+  def initialize(name=nil, price=nil)
     @name = name
     @price = price
     @available_units = 0
@@ -13,6 +13,10 @@ class Product
 
   def price
     @price
+  end
+  
+  def name=(name)
+    @name = name
   end
 
   def price=(money)

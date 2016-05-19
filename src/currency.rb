@@ -2,14 +2,15 @@ require_relative 'money.rb'
 require_relative 'unknown_rate_error.rb'
 
 class Currency
-  @currencies = Hash.new { |currencies, symbol| currencies[symbol] = self.new(symbol) }
+  @currencies = Hash.new
 
-  def self.for(symbol)
-    @currencies[symbol]
+  def self.for(code)
+    code_symbol = code.to_sym
+    @currencies[code_symbol] ||= self.new(code_symbol)
   end
 
-  def initialize(symbol)
-    @symbol = symbol
+  def initialize(code)
+    @code = code
     @rates = {self => 1.0}
   end
 
@@ -31,6 +32,6 @@ class Currency
   end
 
   def to_s
-    @symbol.to_s
+    @code.to_s
   end
 end

@@ -11,6 +11,14 @@ class MoneyTest < Test::Unit::TestCase
     Currency.for(:OTHER_CURRENCY)
   end
 
+  def test_integer_amount_is_converted_to_float
+    assert_same(Money.new(currency, 10).amount, 10.0)
+  end
+
+  def test_string_amount_is_converted_to_float
+    assert_same(Money.new(currency, '10').amount, 10.0)
+  end
+
   def test_monies_are_equal_when_they_have_the_same_currency_and_amount
     assert_equal(currency.money(10), currency.money(10))
     assert_not_equal(other_currency.money(10), currency.money(10))

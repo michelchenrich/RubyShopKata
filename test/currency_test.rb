@@ -15,7 +15,11 @@ class CurrencyTest < Test::Unit::TestCase
   end
 
   def test_currency_for_symbol_is_always_same
-    assert_same(currency, currency)
+    assert_same(Currency.for(:CURRENCY), Currency.for(:CURRENCY))
+  end
+
+  def test_same_currency_for_symbol_and_string
+    assert_same(Currency.for(:CURRENCY), Currency.for('CURRENCY'))
   end
 
   def test_same_currency_is_equal

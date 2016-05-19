@@ -1,7 +1,7 @@
 class Money
   def initialize(currency, amount)
     @currency = currency
-    @amount = amount
+    @amount = amount.to_f
   end
 
   def currency
